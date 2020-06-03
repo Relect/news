@@ -4,7 +4,7 @@ class Router
 {
     private $routes;
 
-    public function _construct()
+    public function __construct()
     {
         $routesPath= ROOT.'/config/routes.php';
 
@@ -20,9 +20,15 @@ class Router
 
     public function run()
     {
+        print_r($this->routes);
         // Получить строку запроса
-        $uri = $this->getURI();
-        echo $uri;
+//        $uri = $this->getURI();
+//        echo $uri;
+        if (!empty($_SERVER['REQUEST_URI'])){
+            $uri = trim($_SERVER['REQUEST_URI'],'/');
+            var_dump($uri);
+        }
+        var_dump($_SERVER['REQUEST_URI']);
 
         // Проверить наличие такого запроса в routes.php
 
